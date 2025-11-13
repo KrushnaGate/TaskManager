@@ -9,10 +9,28 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
+// // Middleware
+// app.use(
+//   cors({
+//     origin: process.env.vercelUrl,
+//     credentials: true,
+//   })
+// );
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://taskmangerhously.vercel.app",
+];
+
 app.use(
   cors({
-    origin: process.env.vercelUrl,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        console.log(" Blocked by CORS:", origin);
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
