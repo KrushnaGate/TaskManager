@@ -18,8 +18,8 @@ const app = express();
 // );
 const allowedOrigins = [
   "http://localhost:5173",
-  // "https://taskmangerhously.vercel.app",
-  "http://localhost:5173",
+  "https://taskmangerhously.vercel.app",
+  // "http://localhost:5173",
 ];
 
 app.use(
