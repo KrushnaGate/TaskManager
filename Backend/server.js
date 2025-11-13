@@ -9,26 +9,31 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
+// Simple CORS - this should work without issues
 app.use(
   cors({
-    origin: "*",
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:5173",
+      "https://task-manager-bref.vercel.app",
+    ],
+    credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
-    credentials: false,
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-// Handle preflight requests
-app.options("*", cors());
 app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 
-// Health check
+// Health check with CORS headers
 app.get("/api/health", (req, res) => {
-  res.json({ message: "Server is running!" });
+  res.json({
+    message: "Server is running!",
+    timestamp: new Date().toISOString(),
+  });
 });
 
 // Error handling middleware
