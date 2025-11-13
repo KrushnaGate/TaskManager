@@ -18,7 +18,8 @@ const app = express();
 // );
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://taskmangerhously.vercel.app",
+  // "https://taskmangerhously.vercel.app",
+  "http://localhost:5173",
 ];
 
 app.use(
@@ -56,7 +57,8 @@ app.use((err, req, res, next) => {
 
 // Database connection
 const MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://localhost:27017/taskmanager";
+  process.env.MONGODB_URI ||
+  "mongodb+srv://krushna:PA09qEviOx5RG5fN@cluster0.mksdqnu.mongodb.net/TaskManager?retryWrites=true&w=majority&appName=Cluster0";
 mongoose
   .connect(MONGODB_URI)
   .then(() => console.log("Connected to MongoDB"))
