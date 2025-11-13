@@ -12,10 +12,14 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: process.env.ORIGIN,
-    credentials: true,
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+    credentials: false,
   })
 );
+// Handle preflight requests
+app.options("*", cors());
 app.use(express.json());
 
 // Routes
