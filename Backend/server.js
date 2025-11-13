@@ -12,7 +12,7 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: process.env.ORIGIN,
+    origin: process.env.vercelUrl,
     credentials: true,
   })
 );
@@ -22,6 +22,9 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 // Health check
 app.get("/api/health", (req, res) => {
   res.json({ message: "Server is running!" });

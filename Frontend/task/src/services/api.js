@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://taskmanager-backend-eq69.onrender.com/api";
+const API_BASE_URL = "https://task-manager-nine-sand.vercel.app/api";
 
 // const API_BASE_URL = "http://localhost:5000/api";
 const api = axios.create({
@@ -35,5 +35,3 @@ api.interceptors.response.use(
 );
 
 export default api;
-
-
